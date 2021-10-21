@@ -1,0 +1,40 @@
+.pages-home {
+  min-height: 700px;
+  background-color: #76c0cc;
+}
+
+.pages-home h2, .pages-home p {
+  width: max-content;
+  margin: auto;
+}
+
+.pages-home div.data {
+  display: flex;
+  margin-top: 30px;
+}
+
+.pages-home p.subtitle1 {
+  display: flex;
+  margin-top: 30px;
+}
+
+.pages-home .pages-home-update {
+    max-width: max-content;
+    margin: auto;
+    padding-top: 20px;
+    color: white;
+    display: flex;
+}
+
+.pages-home .pages-home-update svg {
+    margin: 4px 0;
+    width: 2rem;
+}
+
+.pages-home .pages-home-first-data {
+    min-height: 500px;
+    width: 90%;
+    margin: 10px auto;
+    background-color: #6b9ba3;
+    border-radius: 5px;
+}
