@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import './Home.css';
 import PizzaChart from '../../components/Covid/Graphics/PizzaChart/PizzaChart';
 import { Typography } from "@material-ui/core";
@@ -80,24 +80,49 @@ const Actives = {
   ],
 };
 
-const PagesHome = () => (
-  <div className="pages-home">
-    <div className="pages-home-update">
-      <UpdateIcon />
-      <Typography variant="h6" component="h" gutterBottom>
-        Atualizado em: 20/10/2021 14:50:47 
-      </Typography>
-    </div>
-    <div className="pages-home-first-data">
+const PagesHome = () => {
+  const [newestEpidemicData, setNewestEpidemicData] = useState();
+  const [newestHospitalData, setNewestHospitalData] = useState();
 
-    </div>
-    {/* <div className="data">
-      <PizzaChart data={GeneralCity} title={'Gerais'}/>
-      <PizzaChart data={DeathsCity} title={'Mortes'}/>
-      <PizzaChart data={Hospitals} title={'Capacidade de leitos'}/>
-      <PizzaChart data={Actives} title={'Casos ativos/novos'}/>
-    </div> */}
-  </div>
-);
+  useEffect(() => {
+    const getNewestEpidemicData = async () => {
+      const response = await (await fetch('https://api.clicrbs.com.br/covidapi/v1/timeline')).json();
+      const todayEpidemicInfo = response.length - 1;
+      setNewestEpidemicData(response[todayEpidemicInfo]);
+    };
 
+    getNewestEpidemicData();
+  }, []);
+
+  useEffect(() => {
+    const getNewestHospitalData = async () => {
+      const response = await (await fetch('https://secweb.procergs.com.br/isus-covid/api/v1/markers/estado', 
+        {method: 'GET', headers: {'Access-Control-Allow-Origin': '*', 'content-type': 'aplication/json'}})).json();
+      console.log('aaaa', response)
+    };
+
+    getNewestHospitalData();
+  }, []);
+
+  return (
+    <div className="pages-home">
+      <div className="pages-home-update">
+        <UpdateIcon />
+        <Typography variant="h6" component="h" gutterBottom>
+          Atualizado em: 20/10/2021 14:50:47 
+        </Typography>
+      </div>
+      <div className="pages-home-first-data">
+
+      </div>
+      {/* <div className="data">
+        <PizzaChart data={GeneralCity} title={'Gerais'}/>
+        <PizzaChart data={DeathsCity} title={'Mortes'}/>
+        <PizzaChart data={Hospitals} title={'Capacidade de leitos'}/>
+        <PizzaChart data={Actives} title={'Casos ativos/novos'}/>
+      </div> */}
+    </div>
+  );
+};
+  
 export default PagesHome;
