@@ -82,7 +82,6 @@ const Actives = {
 
 const PagesHome = () => {
   const [newestEpidemicData, setNewestEpidemicData] = useState();
-  const [newestHospitalData, setNewestHospitalData] = useState();
 
   useEffect(() => {
     const getNewestEpidemicData = async () => {
@@ -94,15 +93,7 @@ const PagesHome = () => {
     getNewestEpidemicData();
   }, []);
 
-  useEffect(() => {
-    const getNewestHospitalData = async () => {
-      const response = await (await fetch('https://secweb.procergs.com.br/isus-covid/api/v1/markers/estado', 
-        {method: 'GET', headers: {'Access-Control-Allow-Origin': '*', 'content-type': 'aplication/json'}})).json();
-      console.log('aaaa', response)
-    };
-
-    getNewestHospitalData();
-  }, []);
+  console.log(newestEpidemicData);
 
   return (
     <div className="pages-home">
