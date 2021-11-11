@@ -4,7 +4,7 @@ import Block from '../../components/General/Block';
 import { Typography } from "@material-ui/core";
 import UpdateIcon from "@material-ui/icons/Update";
 import { format } from 'date-fns';
-import PizzaChart from '../../components/Covid/Graphics/PizzaChart/index';
+import PizzaChart from '../../components/Covid/Graphics/VaccinePizzaChart/index';
 
 const GeneralCity = {
   labels: ['Não contraíram', 'Casos confirmados'],
@@ -108,11 +108,11 @@ const PagesHome = () => {
             </Typography>
           </div>
           <div className="pages-home-first-data">
-              <Block>
-                <PizzaChart data={Hospitals} title={'Gerais'}/>
-                <PizzaChart data={Hospitals} title={'Gerais'}/>
-                <PizzaChart data={Hospitals} title={'Gerais'}/>
-                <PizzaChart data={Hospitals} title={'Gerais'}/>
+              <Block title={'Vacinômetro Rio Grande do Sul'} subTitle={'Total de doses aplicadas: 312.826'}> 
+                <PizzaChart data={Hospitals} title={'1 dose:'} subTitleTotal={'100.000'}/>
+                <PizzaChart data={Hospitals} title={'1 dose:'} subTitleTotal={'100.000'}/>
+                <PizzaChart data={Hospitals} title={'1 dose:'} subTitleTotal={'100.000'}/>
+                <PizzaChart data={Hospitals} title={'1 dose:'} subTitleTotal={'100.000'}/>
               </Block>
           </div>
          
