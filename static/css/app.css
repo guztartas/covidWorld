@@ -2,11 +2,8 @@
     --bg-body: #fafbfd;
     --bg-content: #ffffff;
     --bg-hover: #f4f4f4;
-
     --color-txt: #172b4d;
-
     --nav-height: 70px;
-
     --shadow: 0 0 30px 0 rgb(82 63 105 / 5%);
 }
 
@@ -14,7 +11,6 @@
     --bg-body: #151515;
     --bg-content: #242526;
     --bg-hover: #151f28;
-
     --color-txt: #dcdcdc;
 }
 
@@ -46,7 +42,9 @@ body {
     padding: 15px;
 }
 
+
 /* top nav */
+
 .nav-wrapper {
     background-color: var(--bg-content);
     box-shadow: var(--shadow);
@@ -117,9 +115,13 @@ body {
 .darkmode-switch.dark span .bxs-sun {
     display: none;
 }
+
+
 /* end top nav */
 
+
 /* box */
+
 .box {
     width: 100%;
     border-radius: 10px;
@@ -151,9 +153,13 @@ body {
     position: relative;
     text-transform: uppercase;
 }
+
+
 /* end box */
 
+
 /* country dropdown */
+
 .country-select {
     position: relative;
 }
@@ -209,9 +215,13 @@ body {
 .country-item:hover {
     background-color: var(--bg-hover);
 }
+
+
 /* end country dropdown */
 
+
 /* count box */
+
 .count {
     padding: 5px;
     display: flex;
@@ -267,9 +277,13 @@ body {
 .count-death .count-info h5 {
     color: #373c43;
 }
+
+
 /* end count box */
 
+
 /* countries table */
+
 .table-countries {
     width: 100%;
     border-spacing: 0;
@@ -294,9 +308,13 @@ body {
 .table-countries tbody tr:hover {
     background-color: var(--bg-hover);
 }
+
+
 /* end countries table */
 
+
 /* loader */
+
 .loader {
     position: fixed;
     z-index: 99;
@@ -317,9 +335,13 @@ body {
     visibility: visible;
     opacity: 1;
 }
+
+
 /* end loader */
 
+
 /* footer */
+
 .footer {
     background-color: var(--bg-content);
     box-shadow: var(--shadow);
@@ -327,6 +349,8 @@ body {
     text-align: center;
     padding: 2rem;
 }
+
+
 /* end footer */
 
 @media only screen and (max-width: 1280px) {
