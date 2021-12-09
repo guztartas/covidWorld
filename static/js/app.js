@@ -16,6 +16,7 @@ const CASE_NAME = {
     deaths: 'Mortes',
 }
 
+let recoveredDefault = 130997313
 let body = document.querySelector('body')
 let countriesList
 let allTimeChart, daysChart, deathRateChart
@@ -142,7 +143,8 @@ renderWorldData = (worldData, status) => {
                 break
             case CASE_STATUS.recovered:
                 if (e.TotalRecovered == 0) {
-                    res.push(130997313)
+                    res.push(recoveredDefault)
+                    recoveredDefault = recoveredDefault + 799000;
                 } else {
                     res.push(e.TotalRecovered)
                 }
