@@ -70,17 +70,26 @@ showDeathsTotal = (total) => {
     document.querySelector('#death-total').textContent = numberWithCommas(total)
 }
 
+getSummaryDataOrUseCache = (summaryData) => {
+    if (Object.keys(summaryData).length > 1) {
+        localStorage.setItem('summaryData', JSON.stringify(summaryData));
+        return summaryData;
+    } else {
+        return JSON.parse(localStorage.getItem('summaryData'));
+    }
+}
+
 loadSummary = async(country) => {
-    let summaryData = await covidApi.getSummary()
+    let summaryData = getSummaryDataOrUseCache(await covidApi.getSummary());
     let summary = summaryData.Global
 
     if (!isGlobal(country)) {
         summary = summaryData.Countries.filter(e => e.Slug === country)[0]
     }
 
-    showConfirmedTotal(summary.TotalConfirmed)
-    showRecoveredTotal(130997313)
-    showDeathsTotal(summary.TotalDeaths)
+    showConfirmedTotal(summary.TotalConfirmed);
+    showRecoveredTotal(130997313);
+    showDeathsTotal(summary.TotalDeaths);
 
     await loadRecoveryRate(Math.floor(summary.TotalDeaths / summary.TotalConfirmed * 100))
 
@@ -158,12 +167,22 @@ renderWorldData = (worldData, status) => {
     return res
 }
 
+getWorldDataOrUseCache = (worldData) => {
+    if (Object.keys(worldData).length > 1) {
+        localStorage.setItem('covidData', JSON.stringify(worldData));
+        return worldData;
+    } else {
+        document.getElementById('country-select').style.display = 'none'
+        return JSON.parse(localStorage.getItem('covidData'));
+    }
+}
+
 loadAllTimeChart = async(country) => {
     let labels = []
     let confirmData, recoveredData, deathsData
 
     if (isGlobal(country)) {
-        let worldData = await covidApi.getWorldAllTimeCases()
+        let worldData = getWorldDataOrUseCache(await covidApi.getWorldAllTimeCases());
 
         worldData.sort((a, b) => new Date(a.Date) - new Date(b.Date))
         worldData.forEach(e => {
@@ -233,12 +252,21 @@ initDaysChart = async() => {
     daysChart.render()
 }
 
+getDaysDataOrUseCache = (daysData) => {
+    if (Object.keys(daysData).length > 1) {
+        localStorage.setItem('daysData', JSON.stringify(daysData));
+        return daysData;
+    } else {
+        return JSON.parse(localStorage.getItem('daysData'));
+    }
+}
+
 loadDaysChart = async(country) => {
     let labels = []
     let confirmData, recoveredData, deathsData
 
     if (isGlobal(country)) {
-        let worldData = await covidApi.getWorldDaysCases()
+        let worldData = getDaysDataOrUseCache(await covidApi.getWorldDaysCases());
         worldData.sort((a, b) => new Date(a.Date) - new Date(b.Date))
         worldData.forEach(e => {
             let d = new Date(e.Date)
